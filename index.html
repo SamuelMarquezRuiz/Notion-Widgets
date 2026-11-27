@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notion Widgets — Galería</title>
+  <link rel="stylesheet" href="./shared/theme.css" />
+  <script src="./shared/theme.js"></script>
+  <style>
+    body {
+      min-height: 100vh;
+      padding: clamp(20px, 4vw, 48px) clamp(16px, 4vw, 32px);
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero-text h1 {
+      margin: 0 0 6px;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-text p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .theme-switch {
+      display: inline-flex;
+      background: var(--surface-color);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 4px;
+      gap: 4px;
+    }
+
+    .theme-btn {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .theme-btn.active {
+      background: var(--bg-color);
+      color: var(--text-color);
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
+      gap: 24px;
+    }
+
+    .widget-card {
+      background: var(--surface-color);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .widget-preview {
+      background: var(--bg-color);
+      border-bottom: 1px solid var(--border-color);
+      height: 250px;
+    }
+
+    .widget-preview iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .widget-info {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .widget-info h2 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .widget-info p {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+
+    .widget-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+    }
+
+    .widget-actions {
+      margin-top: auto;
+      display: flex;
+      gap: 8px;
+      padding-top: 6px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border-color);
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn:hover {
+      background: var(--surface-hover);
+    }
+
+    .btn-primary {
+      flex: 1;
+      background: var(--accent-color);
+      border-color: transparent;
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.06);
+      background: var(--accent-color);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="hero-text">
+        <h1>Notion Widgets</h1>
+        <p>Widgets web minimalistas listos para incrustar en Notion mediante <code>/embed</code>.</p>
+      </div>
+      <div class="theme-switch" role="group" aria-label="Tema de previsualización">
+        <button type="button" class="theme-btn" data-theme-choice="light">Light</button>
+        <button type="button" class="theme-btn" data-theme-choice="dark">Dark</button>
+      </div>
+    </header>
+
+    <main class="gallery-grid" id="gallery-grid">
+      <!-- Widget: life-progress -->
+      <article class="widget-card" data-widget-path="./widgets/life-progress/">
+        <div class="widget-preview">
+          <iframe
+            src="./widgets/life-progress/?theme=light"
+            title="Vista previa de Life Progress"
+            loading="lazy"
+          ></iframe>
+        </div>
+        <div class="widget-info">
+          <h2>Life Progress</h2>
+          <p>
+            Calcula en tiempo real el porcentaje transcurrido del año, mes, semana (lunes a domingo) y día según tu hora local.
+          </p>
+          <div class="widget-tags">
+            <span class="tag">?theme=light|dark</span>
+            <span class="tag">?decimals=0|1|2</span>
+          </div>
+          <div class="widget-actions">
+            <button type="button" class="btn btn-primary copy-url-btn">Copiar URL de embed</button>
+            <a class="btn open-widget-link" href="./widgets/life-progress/?theme=light" target="_blank" rel="noopener noreferrer">Abrir</a>
+          </div>
+        </div>
+      </article>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      let currentTheme = window.NotionTheme ? window.NotionTheme.getActiveTheme() : "light";
+      const themeButtons = document.querySelectorAll("[data-theme-choice]");
+      const cards = document.querySelectorAll(".widget-card");
+
+      function syncTheme(theme) {
+        currentTheme = theme;
+        if (window.NotionTheme) {
+          window.NotionTheme.applyTheme(theme);
+        }
+
+        themeButtons.forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.themeChoice === theme);
+        });
+
+        cards.forEach((card) => {
+          const basePath = card.dataset.widgetPath;
+          const targetUrl = `${basePath}?theme=${theme}`;
+          const iframe = card.querySelector("iframe");
+          const openLink = card.querySelector(".open-widget-link");
+          if (iframe) iframe.src = targetUrl;
+          if (openLink) openLink.href = targetUrl;
+        });
+      }
+
+      themeButtons.forEach((btn) => {
+        btn.addEventListener("click", () => syncTheme(btn.dataset.themeChoice));
+      });
+
+      document.querySelectorAll(".copy-url-btn").forEach((btn) => {
+        btn.addEventListener("click", async () => {
+          const card = btn.closest(".widget-card");
+          const basePath = card.dataset.widgetPath;
+          const absoluteUrl = new URL(`${basePath}?theme=${currentTheme}`, window.location.href).href;
+
+          try {
+            await navigator.clipboard.writeText(absoluteUrl);
+            const original = btn.textContent;
+            btn.textContent = "¡URL copiada!";
+            setTimeout(() => {
+              btn.textContent = original;
+            }, 1800);
+          } catch {
+            window.prompt("Copia esta URL para Notion:", absoluteUrl);
+          }
+        });
+      });
+
+      syncTheme(currentTheme);
+    })();
+  </script>
+</body>
+</html>

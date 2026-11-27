@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Life Progress — Notion Widget</title>
+  <link rel="stylesheet" href="../../shared/theme.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <script src="../../shared/theme.js"></script>
+</head>
+<body>
+  <main class="widget" aria-label="Life Progress">
+    <header class="widget-header">
+      <div class="title-group">
+        <span class="live-dot" aria-hidden="true"></span>
+        <h1 class="widget-title" id="widget-title">Life Progress</h1>
+      </div>
+      <time class="current-time" id="current-time" aria-live="polite">--:--</time>
+    </header>
+
+    <section class="progress-list" aria-label="Time elapsed">
+      <article class="progress-item" data-unit="year">
+        <div class="item-meta">
+          <div class="item-label-group">
+            <span class="item-label">Year</span>
+            <span class="item-detail" id="detail-year"></span>
+          </div>
+          <span class="item-percent" id="percent-year">0.0%</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-label="Year progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="track-year">
+          <div class="progress-fill fill-year" id="fill-year"></div>
+        </div>
+      </article>
+
+      <article class="progress-item" data-unit="month">
+        <div class="item-meta">
+          <div class="item-label-group">
+            <span class="item-label">Month</span>
+            <span class="item-detail" id="detail-month"></span>
+          </div>
+          <span class="item-percent" id="percent-month">0.0%</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-label="Month progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="track-month">
+          <div class="progress-fill fill-month" id="fill-month"></div>
+        </div>
+      </article>
+
+      <article class="progress-item" data-unit="week">
+        <div class="item-meta">
+          <div class="item-label-group">
+            <span class="item-label">Week</span>
+            <span class="item-detail" id="detail-week"></span>
+          </div>
+          <span class="item-percent" id="percent-week">0.0%</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-label="Week progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="track-week">
+          <div class="progress-fill fill-week" id="fill-week"></div>
+        </div>
+      </article>
+
+      <article class="progress-item" data-unit="day">
+        <div class="item-meta">
+          <div class="item-label-group">
+            <span class="item-label">Day</span>
+            <span class="item-detail" id="detail-day"></span>
+          </div>
+          <span class="item-percent" id="percent-day">0.0%</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-label="Day progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="track-day">
+          <div class="progress-fill fill-day" id="fill-day"></div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
